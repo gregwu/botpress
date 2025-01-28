@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import * as types from './types'
 import { getWhatsAppMediaUrl } from './util'
 import { WhatsAppMessage, WhatsAppValue } from './whatsapp-types'
@@ -69,7 +68,7 @@ export async function handleIncomingMessage(
       } else if (message.image) {
         logger.forBot().debug('Received image message from Whatsapp:', message.button)
 
-        const imageUrl = await getWhatsAppMediaUrl(message.image.id, ctx)
+        const imageUrl = await getWhatsAppMediaUrl(message.image.id, client, ctx)
 
         await client.createMessage({
           tags: { id: message.id },
@@ -81,7 +80,7 @@ export async function handleIncomingMessage(
       } else if (message.audio) {
         logger.forBot().debug('Received audio message from Whatsapp:', message.button)
 
-        const audioUrl = await getWhatsAppMediaUrl(message.audio.id, ctx)
+        const audioUrl = await getWhatsAppMediaUrl(message.audio.id, client, ctx)
 
         await client.createMessage({
           tags: { id: message.id },
@@ -93,17 +92,27 @@ export async function handleIncomingMessage(
       } else if (message.document) {
         logger.forBot().debug('Received document message from Whatsapp:', message.button)
 
-        const documentUrl = await getWhatsAppMediaUrl(message.document.id, ctx)
+        const documentUrl = await getWhatsAppMediaUrl(message.document.id, client, ctx)
 
         await client.createMessage({
           tags: { id: message.id },
-          type: 'document' as any, // Note: We cast this to avoid defining a custom message type which would involve having to support it as an outgoing message as well.
+          type: 'file',
           payload: {
-            document: {
-              documentUrl,
-              filename: message.document.filename,
-            },
+            fileUrl: documentUrl,
+            filename: message.document.filename,
           },
+          userId: user.id,
+          conversationId: conversation.id,
+        })
+      } else if (message.video) {
+        logger.forBot().debug('Received video message from Whatsapp:', message.video)
+
+        const videoUrl = await getWhatsAppMediaUrl(message.video.id, client, ctx)
+
+        await client.createMessage({
+          tags: { id: message.id },
+          type: 'video',
+          payload: { videoUrl },
           userId: user.id,
           conversationId: conversation.id,
         })

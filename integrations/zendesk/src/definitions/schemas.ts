@@ -14,7 +14,7 @@ export const ticketSchema = z.object({
   tags: z.array(z.string()),
 })
 
-const zdTicketSchema = ticketSchema.transform((data) => ({
+const _zdTicketSchema = ticketSchema.transform((data) => ({
   ...omit(data, ['requesterId', 'assigneeId', 'createdAt', 'updatedAt']),
   created_at: data.createdAt,
   updated_at: data.updatedAt,
@@ -22,7 +22,7 @@ const zdTicketSchema = ticketSchema.transform((data) => ({
   assignee_id: data.assigneeId,
 }))
 
-export type ZendeskTicket = z.output<typeof zdTicketSchema>
+export type ZendeskTicket = z.output<typeof _zdTicketSchema>
 export type Ticket = z.input<typeof ticketSchema>
 
 export const transformTicket = (ticket: ZendeskTicket): Ticket => {
@@ -49,7 +49,7 @@ export const userSchema = z.object({
   userFields: z.record(z.string()).optional(),
 })
 
-const zdUserSchema = userSchema.transform((data) => ({
+const _zdUserSchema = userSchema.transform((data) => ({
   ...omit(data, ['createdAt', 'updatedAt', 'externalId', 'userFields']),
   created_at: data.createdAt,
   updated_at: data.updatedAt,
@@ -57,7 +57,7 @@ const zdUserSchema = userSchema.transform((data) => ({
   user_fields: data.userFields,
 }))
 
-export type ZendeskUser = z.output<typeof zdUserSchema>
+export type ZendeskUser = z.output<typeof _zdUserSchema>
 export type User = z.input<typeof userSchema>
 
 export const transformUser = (ticket: ZendeskUser): User => {
@@ -68,4 +68,44 @@ export const transformUser = (ticket: ZendeskUser): User => {
     createdAt: ticket.created_at,
     updatedAt: ticket.updated_at,
   }
+}
+
+export type ZendeskArticle = {
+  id: number
+  url: string
+  html_url: string
+  author_id: number
+  comments_disabled: boolean
+  draft: boolean
+  promoted: boolean
+  position: number
+  vote_sum: number
+  vote_count: number
+  section_id: number
+  created_at: string
+  updated_at: string
+  name: string
+  title: string
+  source_locale: string
+  locale: string
+  outdated: boolean
+  outdated_locales: string[]
+  edited_at: string
+  user_segment_id: number | null
+  permission_group_id: number
+  content_tag_ids: number[]
+  label_names: string[]
+  body: string
+}
+
+export type ZendeskWebhook = {
+  id: string
+  name: string
+  status: string
+  subscriptions: string[]
+  created_at: string
+  created_by: string
+  endpoint: string
+  http_method: string
+  request_format: string
 }

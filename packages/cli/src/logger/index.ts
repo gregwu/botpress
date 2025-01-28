@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { cursorTo, clearLine } from 'readline'
 import { BaseLogger, LoggerOptions } from './base-logger'
 
@@ -31,10 +30,10 @@ export class Logger extends BaseLogger {
   }
 }
 
-class SingleLineLogger extends BaseLogger {
+export class SingleLineLogger extends BaseLogger {
   private _commited = false
 
-  constructor(opts: LoggerOptions) {
+  public constructor(opts: LoggerOptions) {
     super(opts)
   }
 
@@ -43,7 +42,7 @@ class SingleLineLogger extends BaseLogger {
       return
     }
     this._commited = true
-    console.log()
+    console.info()
   }
 
   protected print(message: string, props: Partial<{ prefix: string }> = {}): void {

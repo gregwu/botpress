@@ -3,16 +3,34 @@ import { sentry as sentryHelpers } from '@botpress/sdk-addons'
 import actions from './actions'
 import channels from './channels'
 import { handler } from './handler'
-import { createConversation, register, unregister } from './setup'
+import { register, unregister } from './setup'
 import * as bp from '.botpress'
 
 const integration = new bp.Integration({
   register,
   unregister,
   handler,
-  createConversation,
-  actions,
   channels,
+  actions: {
+    ...actions,
+    issueList: async (props) => {
+      const count = 20
+      const startCursor = props.input.nextToken
+      const res = await actions.listIssues({
+        ...props,
+        type: 'listIssues',
+        input: {
+          count,
+          startCursor,
+        },
+      })
+      return {
+        // eslint-disable-next-line unused-imports/no-unused-vars
+        items: res.issues.map(({ linearIds, ...item }) => item),
+        meta: { nextToken: res.nextCursor },
+      }
+    },
+  },
 })
 
 export default sentryHelpers.wrapIntegration(integration, {

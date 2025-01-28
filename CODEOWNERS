@@ -1,33 +1,62 @@
 # Global
-* @botpress/cloud-services
+* @botpress/engineering
 
 # Scripts
 /scripts @franklevasseur
 
 # Client, SDK, CLI
-/packages @botpress/cloud-services
+/packages @botpress/engineering
 
 # Bots
 /packages/bots @franklevasseur
 
+# Plugins
+/plugins @botpress/engineering
+
 # Integrations
-/integrations/dalle @franklevasseur
-/integrations/gmail @michaelmass
-/integrations/googlecalendar @charlescatta
-/integrations/gsheets @franklevasseur
-/integrations/instagram @charlescatta
-/integrations/intercom @chsir17 @ptrckbp
-/integrations/linear @allardy
-/integrations/mailchimp @charlescatta
-/integrations/make @charlescatta
-/integrations/messenger @charlescatta
-/integrations/notion @lakshya0246
-/integrations/slack @michaelmass
-/integrations/stripe @charlescatta
-/integrations/teams @franklevasseur
-/integrations/telegram @franklevasseur @charlescatta
-/integrations/twilio @AbrahamLopez10
-/integrations/webhook @franklevasseur
-/integrations/whatsapp @AbrahamLopez10
-/integrations/zapier @AbrahamLopez10
-/integrations/zendesk @davidvitora
+## Utils
+/integrations/browser @allardy @botpress/engineering
+/integrations/charts @allardy @botpress/engineering
+/integrations/pdf-generator @allardy @botpress/engineering
+
+## LLM
+/integrations/anthropic @AbrahamLopez10 @botpress/engineering
+/integrations/cerebras @AbrahamLopez10 @botpress/engineering
+/integrations/fireworks-ai @AbrahamLopez10 @botpress/engineering
+/integrations/google-ai @AbrahamLopez10 @botpress/engineering
+/integrations/groq @AbrahamLopez10 @botpress/engineering
+/integrations/openai @AbrahamLopez10 @botpress/engineering
+
+## Others
+/integrations/airtable @pascal-botpress @botpress/engineering
+/integrations/asana @SebastienPoitras @botpress/engineering
+/integrations/chat @franklevasseur @botpress/engineering
+/integrations/clickup @franklevasseur @botpress/engineering
+/integrations/dropbox @pascal-botpress @botpress/engineering
+/integrations/freshchat @SebastienPoitras @botpress/engineering
+/integrations/github @pascal-botpress @botpress/engineering
+/integrations/gmail @pascal-botpress @botpress/engineering
+/integrations/googlecalendar @pascal-botpress @botpress/engineering
+/integrations/googledrive @pascal-botpress @botpress/engineering
+/integrations/gsheets @pascal-botpress @botpress/engineering
+/integrations/instagram @SebastienPoitras @botpress/engineering
+/integrations/intercom @SebastienPoitras @botpress/engineering
+/integrations/line @SebastienPoitras @botpress/engineering
+/integrations/linear @franklevasseur @botpress/engineering
+/integrations/mailchimp @SebastienPoitras @botpress/engineering
+/integrations/messenger @SebastienPoitras @botpress/engineering
+/integrations/notion @pascal-botpress @botpress/engineering
+/integrations/slack @pascal-botpress @botpress/engineering
+/integrations/stripe @SebastienPoitras @botpress/engineering
+/integrations/sunco @SebastienPoitras @botpress/engineering
+/integrations/teams @franklevasseur @botpress/engineering
+/integrations/telegram @franklevasseur @botpress/engineering
+/integrations/todoist @SebastienPoitras @botpress/engineering
+/integrations/trello @pascal-botpress @botpress/engineering
+/integrations/twilio @SebastienPoitras @botpress/engineering
+/integrations/viber @SebastienPoitras @botpress/engineering
+/integrations/vonage @SebastienPoitras @botpress/engineering
+/integrations/webhook @franklevasseur @botpress/engineering
+/integrations/whatsapp @SebastienPoitras @botpress/engineering
+/integrations/zapier @SebastienPoitras @botpress/engineering
+/integrations/zendesk @franklevasseur @botpress/engineering

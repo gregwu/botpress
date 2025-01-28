@@ -1,23 +1,24 @@
+/* bplint-disable */
 import { z, IntegrationDefinition, messages } from '@botpress/sdk'
 import { sentry as sentryHelpers } from '@botpress/sdk-addons'
 
 export default new IntegrationDefinition({
   name: 'viber',
-  version: '0.4.2',
+  version: '0.4.6',
   title: 'Viber',
-  description: 'This integration allows your bot to interact with Viber.',
+  description: 'Send and receive SMS messages.',
   icon: 'icon.svg',
   readme: 'hub.md',
   configuration: {
     schema: z.object({
-      authToken: z.string(),
-      botName: z.string(),
-      botAvatar: z.string(),
+      authToken: z.string().min(1),
+      botName: z.string().min(1),
+      botAvatar: z.string().min(1),
     }),
   },
   channels: {
     channel: {
-      messages: messages.defaults,
+      messages: { ...messages.defaults, markdown: messages.markdown },
       message: {
         tags: {
           id: {},

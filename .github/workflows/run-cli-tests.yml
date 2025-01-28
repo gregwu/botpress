@@ -19,9 +19,9 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
         with:
-          filter: '@botpress/cli'
+          extra_filters: '-F @botpress/cli'
       - run: |
-          pnpm run -F cli e2e:test -v \
+          pnpm run -F cli test:e2e -v \
             --api-url https://api.botpress.dev \
             --workspace-id ${{ secrets.STAGING_E2E_TESTS_WORKSPACE_ID }} \
             --workspace-handle clitests \

@@ -1,22 +1,23 @@
+/* bplint-disable */
 import { z, IntegrationDefinition, messages } from '@botpress/sdk'
 import { sentry as sentryHelpers } from '@botpress/sdk-addons'
 
 export default new IntegrationDefinition({
   name: 'twilio',
-  version: '0.4.2',
+  version: '0.4.6',
   title: 'Twilio',
-  description: 'This integration allows your bot to interact with Twilio.',
+  description: 'Send and receive messages, voice calls, emails, SMS, and more.',
   icon: 'icon.svg',
   readme: 'hub.md',
   configuration: {
     schema: z.object({
-      accountSID: z.string(),
-      authToken: z.string(),
+      accountSID: z.string().min(1),
+      authToken: z.string().min(1),
     }),
   },
   channels: {
     channel: {
-      messages: messages.defaults,
+      messages: { ...messages.defaults, markdown: messages.markdown },
       message: {
         tags: {
           id: {},
